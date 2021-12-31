@@ -1,0 +1,21 @@
+#jinja2: lstrip_blocks: True
+# {{ ansible_managed }}
+gid = users
+read only = true
+use chroot = true
+transfer logging = true
+log format = %h %o %f %l %b
+log file = /var/log/rsyncd.log
+pid file = /var/run/rsyncd.pid
+hosts allow = trusted.hosts
+slp refresh = 300
+use slp = false
+
+{% if rsyncd_shares is defined %}
+ {% for share in rsyncd_shares %}
+[{{share}}]
+   {% for option in rsyncd_shares[share]%}
+	{{option}}
+   {% endfor %}
+ {% endfor %}
+{% endif %}
