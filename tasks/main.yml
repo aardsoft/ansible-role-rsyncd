@@ -2,6 +2,11 @@
     role_packages:
       - rsync
 
+- set_fact:
+    role_packages: "{{role_packages}} + ['rsync-daemon']"
+  when: >
+    ansible_os_family == "RedHat"
+
 - include_role:
     name: basic-host
     tasks_from: install_packages
