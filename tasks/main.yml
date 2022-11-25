@@ -8,7 +8,7 @@
     ansible_os_family == "RedHat"
 
 - include_role:
-    name: basic-host
+    name: data-utilities
     tasks_from: install_packages
 
 - name: configure firewall for rsync
