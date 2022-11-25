@@ -1,0 +1,4 @@
+This is a simple, mostly self-contained role to help setting up rsync daemons. See the full documentation for the [[https://doc-head.aardsoft.fi/ansible/rsyncd/][development version]].
+
+Dependencies are:
+- package installer from [[https://github.com/aardsoft/ansible-data-utilities][data-utilities]]

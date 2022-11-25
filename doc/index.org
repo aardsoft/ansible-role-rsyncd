@@ -1,0 +1,26 @@
+* Introduction
+This role helps in setting up rsync daemon shares.
+
+The role can be obtained from [[https://github.com/aardsoft/ansible-role-rsyncd][github]].
+
+* Configuration
+** rsyncd_shares
+A dict with share names as key, and a list of rsync configuration options as value.
+
+#+BEGIN_SRC yaml
+rsyncd_shares:
+  opensuse:
+    - uid = nobody
+    - path = /srv/mirrors/opensuse
+    - hosts allow = 10.42.10.0/32 172.30.0.0/32
+#+END_SRC
+
+** rsyncd_firewall_zones
+A list of configured firewalld zones to enable rsyncd in. Note that this will require the variable =firewalld_available= to be set to =true= to work - in which case firewalld must be running, otherwise the role will throw an error.
+
+Instead of manually setting this variable the role can also be used after running the [[https://github.com/aardsoft/ansible-role-basic-host][basic-host]] role, which can configure and start firewalld, if needed.
+
+#+BEGIN_SRC yaml
+rsyncd_firewall_zones:
+  - internal
+#+END_SRC
